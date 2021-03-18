@@ -452,8 +452,7 @@ IfInString, isiPuncakCL1, %split%
 
 else {
     SendInput, % isiPuncakCL1
-    Send {Tab}
-    MsgBox % Floor(isiPuncakCL1)
+    Send {Tab 2}
 }
 
 
