@@ -2,7 +2,7 @@ f9::
 InputBox, nama, Tanggal, Masukkan Tanggal,,200,120
 format=.xls
 namafile=%nama%%format%
-wbk := ComObjGet("D:\Users\Downloads\"namafile)
+wbk := ComObjGet("D:\SYNOP\"namafile)
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
@@ -41,12 +41,12 @@ isi:= wbc.Range("B"arahAngin).Value
 if(isi="calm"){
     isi=0
 }
-SendInput, % isi
+SendInput, % Floor(isi)
 Send {Tab}
 
 kecAngin:= 13+space
 isi:= wbc.Range("B"kecAngin).Value
-SendInput, % isi
+SendInput, % Floor(isi)
 Send {Tab}
 
 vv:= 10+space
@@ -243,7 +243,7 @@ if(isi != ""){
 else
     Send {Tab}
 
-w2:=12+space
+w2:=13+space
 isi:= wbc.Range("I"w2).Value
 if(isi != ""){
     if (isi="Cloudy -")
@@ -285,7 +285,7 @@ if(isi != ""){
 }
 else
     Send {Tab}
-
+/*
 degPanas:=10+space
 isi:= wbc.Range("J"degPanas).Value
 SendInput, % isi
@@ -628,7 +628,7 @@ if(isi != ""){
         isi=8
     else if (isi=360)
         isi=8
-    Send {Down 2}
+    Send {Down}
     Loop, % isi
     {
         Send {Down} 
@@ -1655,7 +1655,7 @@ else
 catatanTanah:=12+space
 isi:= wbc.Range("AV"catatanTanah).Value
 SendInput, % isi
-
+*/
 MsgBox Periksa lalu tekan commit ^^ `n ~ PKL PENS 2021
 
 return
