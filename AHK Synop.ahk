@@ -1,5 +1,5 @@
 f9::
-wbk := ComObjGet("D:\Users\Downloads\31.xls")
+wbk := ComObjGet("D:\Users\Downloads\25.xls")
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
@@ -24,6 +24,7 @@ dataAngin:= 10+space
 isi:=wbc.Range("B"dataAngin).Value
 if(isi=3){
     Send {Down} 
+    Send {Enter}
     Send {Tab} 
 }
 if(isi=4){
@@ -34,12 +35,15 @@ if(isi=4){
 
 arahAngin:= 12+space
 isi:= wbc.Range("B"arahAngin).Value
-SendInput, % Floor(isi)
+if(isi="calm"){
+    isi=0
+}
+SendInput, % isi
 Send {Tab}
 
 kecAngin:= 13+space
 isi:= wbc.Range("B"kecAngin).Value
-SendInput, % Floor(isi)
+SendInput, % isi
 Send {Tab}
 
 vv:= 10+space
@@ -345,12 +349,13 @@ if(jam=0){
     Send {Tab}
 }
 
+
 if(Mod(jam,3)=0){
     dataHujan:=10+space
     isiDataHujan:= wbc.Range("Q"dataHujan).Value
     if(isiDataHujan >= 0){
         Send {Down} 
-        Loop, % isi
+        Loop, % isiDataHujan
         {
             Send {Down} 
         }
@@ -358,14 +363,13 @@ if(Mod(jam,3)=0){
         Send {Tab}
     }
     else
-        Send {Tab}
-        
+        Send {Tab}      
     if(isiDataHujan != 3){
         hujanTakaranTerakhir:= 11+space
         isi:= wbc.Range("Q"hujanTakaranTerakhir).Value
         SendInput, % isi
         Send {Tab}
-    }
+    } 
 }
 
 if(Mod(jam,6)=0 and isiDataHujan != 3){
@@ -396,7 +400,7 @@ if(isi != ""){
         isi=7
     else if (isi="cb")
         isi=9
-    else if (isi="0")
+    else if (isi=0)
         isi=10
     else if (isi="ci")
         isi=0
@@ -436,9 +440,22 @@ SendInput, % isi
 Send {Tab 3}
 
 tinggiPuncakCL1:=13+space
-isi:= wbc.Range("T"tinggiPuncakCL1).Value
-SendInput, % isi
-Send {Tab 2}
+isiPuncakCL1:= wbc.Range("T"tinggiPuncakCL1).Value
+split:="/"
+IfInString, isiPuncakCL1, %split%
+{
+    for index, isiPuncakCL1 in StrSplit(isiPuncakCL1, "/"){
+        SendInput, % isiPuncakCL1
+        Send {Tab}
+    }
+}
+
+else {
+    SendInput, % isiPuncakCL1
+    Send {Tab}
+    MsgBox % Floor(isiPuncakCL1)
+}
+
 
 arahElevasiCL1:=10+space
 isi:= wbc.Range("W"arahElevasiCL1).Value
@@ -1407,7 +1424,7 @@ else
 
 jenisC2:=11+space
 isi:= wbc.Range("AI"jenisC2).Value
-if(isi != "-"){
+if(isi != "-"){ 
     if (isi="cu sc")
         isi=8
     else if (isi="cusc")
