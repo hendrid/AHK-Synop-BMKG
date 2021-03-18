@@ -1,9 +1,12 @@
 f9::
-wbk := ComObjGet("D:\Users\Downloads\25.xls")
+InputBox, nama, Tanggal, Masukkan Tanggal,,200,120
+format=.xls
+namafile=%nama%%format%
+wbk := ComObjGet("D:\Users\Downloads\"namafile)
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
-InputBox, jam, Jam UTC, Masukkan Jam UTC `n ~ PKL PENS 2021, ,200,150
+InputBox, jam, Jam UTC, Masukkan Jam UTC,,200,120
 if ErrorLevel{
     MsgBox, Tombol CANCEL ditekan.
     Esc::ExitApp
@@ -1653,6 +1656,6 @@ catatanTanah:=12+space
 isi:= wbc.Range("AV"catatanTanah).Value
 SendInput, % isi
 
-MsgBox Periksa lalu tekan commit ^^
+MsgBox Periksa lalu tekan commit ^^ `n ~ PKL PENS 2021
 
 return
