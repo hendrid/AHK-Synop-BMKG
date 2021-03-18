@@ -392,6 +392,8 @@ if(isi != ""){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="acas")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
@@ -860,6 +862,8 @@ if(isiNAwanMenengah > 0){
             isi=9
         else if (isi="cb cu")
             isi=9
+        else if (isi="acas")
+            isi=7
         else if (isi="cb")
             isi=9
         else if (isi="cu")
@@ -911,6 +915,8 @@ if(isiNAwanTinggi>0){
             isi=9
         else if (isi="cb cu")
             isi=9
+        else if (isi="acas")
+            isi=7
         else if (isi="cb")
             isi=9
         else if (isi="cu")
@@ -1120,7 +1126,7 @@ if(isiNAwanMenengah>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down}
+        Send {Down 2}
         Loop, % isi
         {
             Send {Down} 
@@ -1307,7 +1313,7 @@ if(isiNAwanTinggi>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down}
+        Send {Down 2}
         Loop, % isi
         {
             Send {Down} 
@@ -1357,6 +1363,8 @@ if(isi != "-"){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="acas")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
@@ -1408,6 +1416,8 @@ if(isi != "-"){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="acas")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
@@ -1459,6 +1469,8 @@ if(isi != "-"){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="acas")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
