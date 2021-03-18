@@ -12,7 +12,7 @@ if ErrorLevel{
     Esc::ExitApp
 }
 else{
-    MsgBox, Input Metar jam %jam% UTC
+    MsgBox, Input Synop jam %jam% UTC
 }
 if(jam<6)
     space:= 5*jam
@@ -285,7 +285,7 @@ if(isi != ""){
 }
 else
     Send {Tab}
-/*
+
 degPanas:=10+space
 isi:= wbc.Range("J"degPanas).Value
 SendInput, % isi
@@ -808,7 +808,7 @@ if(isi != ""){
         isi=8
     else if (isi=360)
         isi=8
-    Send {Down 2}
+    Send {Down}
     Loop, % isi
     {
         Send {Down} 
@@ -1145,7 +1145,7 @@ if(isiNAwanMenengah>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down 2}
+        Send {Down}
         Loop, % isi
         {
             Send {Down} 
@@ -1332,7 +1332,7 @@ if(isiNAwanTinggi>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down 2}
+        Send {Down}
         Loop, % isi
         {
             Send {Down} 
@@ -1614,7 +1614,7 @@ else{
 if(jam=0){
     isi:= wbc.Range("AQ10").Value
     if(isi>=0){
-        Send {Down 2}
+        Send {Down}
         Loop, % isi
         {
             Send {Down} 
@@ -1655,7 +1655,7 @@ else
 catatanTanah:=12+space
 isi:= wbc.Range("AV"catatanTanah).Value
 SendInput, % isi
-*/
+
 MsgBox Periksa lalu tekan commit ^^ `n ~ PKL PENS 2021
 
 return
