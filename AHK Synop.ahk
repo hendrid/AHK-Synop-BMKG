@@ -1,8 +1,35 @@
-f9::
-InputBox, nama, Tanggal, Masukkan Tanggal,,200,120
-format=.xls
-namafile=%nama%%format%
-wbk := ComObjGet("D:\SYNOP\"namafile)
+^!s::
+InputBox, nama, Tanggal, Masukkan Tanggal dgn format dd/mm/yy,,200,150
+StringSplit, tanggal_array, nama, '/'
+format=xls
+if(tanggal_array2=1)
+    tanggal_array2="1.Januari"
+else if(tanggal_array2=2)
+    tanggal_array2="2.Pebruari"
+else if(tanggal_array2=3)
+    tanggal_array2="3.Maret"
+else if(tanggal_array2=4)
+    tanggal_array2="4.April"
+else if(tanggal_array2=5)
+    tanggal_array2="5.Mei"
+else if(tanggal_array2=6)
+    tanggal_array2="6.Juni"
+else if(tanggal_array2=7)
+    tanggal_array2="7.Juli"
+else if(tanggal_array2=8)
+    tanggal_array2="8.Agustus"
+else if(tanggal_array2=9)
+    tanggal_array2="9.September"
+else if(tanggal_array2=10)
+    tanggal_array2="10.Oktober"
+else if(tanggal_array2=11)
+    tanggal_array2="11.Nopember"
+else
+    tanggal_array2="12.Desember"
+
+namafile=%tanggal_array3%\%tanggal_array2%\%tanggal_array3%.%format%
+
+wbk := ComObjGet("D:\SYNOP_20\"namafile)
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
