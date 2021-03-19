@@ -1,5 +1,5 @@
 ^!s::
-InputBox, nama, Tanggal, Masukkan Tanggal dgn format dd/mm/yy,,200,150
+InputBox, nama, Tanggal, Masukkan Tanggal dgn format dd/mm/yy `nContoh: 1/1/21,,200,160
 StringSplit, tanggal_array, nama, '/'
 format=xls
 if(tanggal_array2=1)
@@ -32,7 +32,7 @@ wbk := ComObjGet(namafile)
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
-InputBox, jam, Jam UTC, Masukkan Jam UTC,,200,120
+InputBox, jam, Jam UTC, Masukkan Jam UTC,,200,130
 if ErrorLevel{
     MsgBox, Tombol CANCEL ditekan.
     Esc::ExitApp
@@ -378,7 +378,6 @@ if(jam=0){
     Send {Tab}
 }
 
-
 if(Mod(jam,3)=0){
     dataHujan:=10+space
     isiDataHujan:= wbc.Range("Q"dataHujan).Value
@@ -415,45 +414,45 @@ if(jam=0){
 }
 
 awanRendah:=10+space
-isi:= wbc.Range("T"awanRendah).Value
-if(isi != ""){
-    if (isi="cu sc")
-        isi=8
-    else if (isi="cusc")
-        isi=8
-    else if (isi="cbcu")
-        isi=9
-    else if (isi="cb cu")
-        isi=9
-    else if (isi="acas")
-        isi=7
-    else if (isi="cb")
-        isi=9
-    else if (isi=0)
-        isi=10
-    else if (isi="ci")
-        isi=0
-    else if (isi="cc")
-        isi=1
-    else if (isi="cs")
-        isi=2
-    else if (isi="ac")
-        isi=3
-    else if (isi="as")
-        isi=4
-    else if (isi="ns")
-        isi=5
-    else if (isi="sc")
-        isi=6
-    else if (isi="st")
-        isi=7
-    else if (isi="cu")
-        isi=8
-    else if (isi="cb")
-        isi=9
+jenisAwanRendah:= wbc.Range("T"awanRendah).Value
+if(jenisAwanRendah != ""){
+    if (jenisAwanRendah="cu sc")
+        jenisAwanRendah=8
+    else if (jenisAwanRendah="cusc")
+        jenisAwanRendah=8
+    else if (jenisAwanRendah="cbcu")
+        jenisAwanRendah=9
+    else if (jenisAwanRendah="cb cu")
+        jenisAwanRendah=9
+    else if (jenisAwanRendah="acas")
+        jenisAwanRendah=7
+    else if (jenisAwanRendah="cb")
+        jenisAwanRendah=9
+    else if (jenisAwanRendah=0)
+        jenisAwanRendah=10
+    else if (jenisAwanRendah="ci")
+        jenisAwanRendah=0
+    else if (jenisAwanRendah="cc")
+        jenisAwanRendah=1
+    else if (jenisAwanRendah="cs")
+        jenisAwanRendah=2
+    else if (jenisAwanRendah="ac")
+        jenisAwanRendah=3
+    else if (jenisAwanRendah="as")
+        jenisAwanRendah=4
+    else if (jenisAwanRendah="ns")
+        jenisAwanRendah=5
+    else if (jenisAwanRendah="sc")
+        jenisAwanRendah=6
+    else if (jenisAwanRendah="st")
+        jenisAwanRendah=7
+    else if (jenisAwanRendah="cu")
+        jenisAwanRendah=8
+    else if (jenisAwanRendah="cb")
+        jenisAwanRendah=9
         
     Send {Down}
-    Loop, % isi
+    Loop, % jenisAwanRendah
     {
         Send {Down} 
     }
@@ -463,409 +462,479 @@ if(isi != ""){
 else
     Send {Tab}
 
-tinggiDasarCL1:=12+space
-isi:= wbc.Range("T"tinggiDasarCL1).Value
-SendInput, % isi
-Send {Tab 3}
+if(jenisAwanRendah>0){
+    tinggiDasarCL:=12+space
+    isiTinggiDasarCL:= wbc.Range("T"tinggiDasarCL).Value
+    split:="/"
+    IfInString, isiTinggiDasarCL, %split%
+    {
+        for index, isiTinggiDasarCL in StrSplit(isiTinggiDasarCL, "/"){
+            SendInput, % isiTinggiDasarCL
+            if(index.MaxIndex()=2){
+                Send {Tab 2}
+            }
+            else{
+                Send {Tab}
+            }
+        }
+    }
+    else {
+        SendInput, % isiTinggiDasarCL
+        Send {Tab 3}
+    }
 
-tinggiPuncakCL1:=13+space
-isiPuncakCL1:= wbc.Range("T"tinggiPuncakCL1).Value
-split:="/"
-IfInString, isiPuncakCL1, %split%
-{
-    for index, isiPuncakCL1 in StrSplit(isiPuncakCL1, "/"){
+    tinggiPuncakCL1:=13+space
+    isiPuncakCL1:= wbc.Range("T"tinggiPuncakCL1).Value
+    split:="/"
+    IfInString, isiPuncakCL1, %split%
+    {
+        for index, isiPuncakCL1 in StrSplit(isiPuncakCL1, "/"){
+            SendInput, % isiPuncakCL1
+            Send {Tab}
+        }
+    }
+
+    else {
         SendInput, % isiPuncakCL1
+        Send {Tab 2}
+    }
+
+
+    arahElevasiCL1:=10+space
+    isi:= wbc.Range("W"arahElevasiCL1).Value
+    if(isi != ""){
+        if (isi="stnr")
+            isi=0
+        else if (isi="north east")
+            isi=1
+        else if (isi="east")
+            isi=2
+        else if (isi="south east")
+            isi=3
+        else if (isi="south")
+            isi=4
+        else if (isi="south west")
+            isi=5
+        else if (isi="west")
+            isi=6
+        else if (isi="north west")
+            isi=7
+        else if (isi="north")
+            isi=8
+        else if (isi="-")
+            isi=9
+        else if (isi="No cloud")
+            isi=0
+        else if (isi=5)
+            isi=8
+        else if (isi=10)
+            isi=8
+        else if (isi=15)
+            isi=8
+        else if (isi=20)
+            isi=8
+        else if (isi=25)
+            isi=1
+        else if (isi=30)
+            isi=1
+        else if (isi=35)
+            isi=1
+        else if (isi=40)
+            isi=1
+        else if (isi=45)
+            isi=1
+        else if (isi=50)
+            isi=1
+        else if (isi=55)
+            isi=1
+        else if (isi=60)
+            isi=1
+        else if (isi=65)
+            isi=1
+        else if (isi=70)
+            isi=2
+        else if (isi=75)
+            isi=2
+        else if (isi=80)
+            isi=2
+        else if (isi=85)
+            isi=2
+        else if (isi=90)
+            isi=2
+        else if (isi=95)
+            isi=2
+        else if (isi=100)
+            isi=2
+        else if (isi=105)
+            isi=2
+        else if (isi=110)
+            isi=2
+        else if (isi=115)
+            isi=3
+        else if (isi=120)
+            isi=3
+        else if (isi=125)
+            isi=3
+        else if (isi=130)
+            isi=3
+        else if (isi=135)
+            isi=3
+        else if (isi=140)
+            isi=3
+        else if (isi=145)
+            isi=3
+        else if (isi=150)
+            isi=3
+        else if (isi=155)
+            isi=3
+        else if (isi=160)
+            isi=4
+        else if (isi=165)
+            isi=4
+        else if (isi=170)
+            isi=4
+        else if (isi=175)
+            isi=4
+        else if (isi=180)
+            isi=4
+        else if (isi=185)
+            isi=4
+        else if (isi=190)
+            isi=4
+        else if (isi=195)
+            isi=4
+        else if (isi=200)
+            isi=4
+        else if (isi=205)
+            isi=5
+        else if (isi=210)
+            isi=5
+        else if (isi=215)
+            isi=5
+        else if (isi=220)
+            isi=5
+        else if (isi=225)
+            isi=5
+        else if (isi=230)
+            isi=5
+        else if (isi=235)
+            isi=5
+        else if (isi=240)
+            isi=5
+        else if (isi=245)
+            isi=5
+        else if (isi=250)
+            isi=6
+        else if (isi=255)
+            isi=6
+        else if (isi=260)
+            isi=6
+        else if (isi=265)
+            isi=6
+        else if (isi=270)
+            isi=6
+        else if (isi=275)
+            isi=6
+        else if (isi=280)
+            isi=6
+        else if (isi=285)
+            isi=6
+        else if (isi=290)
+            isi=6
+        else if (isi=295)
+            isi=7
+        else if (isi=300)
+            isi=7
+        else if (isi=305)
+            isi=7
+        else if (isi=310)
+            isi=7
+        else if (isi=315)
+            isi=7
+        else if (isi=320)
+            isi=7
+        else if (isi=325)
+            isi=7
+        else if (isi=330)
+            isi=7
+        else if (isi=335)
+            isi=7
+        else if (isi=340)
+            isi=8
+        else if (isi=345)
+            isi=8
+        else if (isi=350)
+            isi=8
+        else if (isi=355)
+            isi=8
+        else if (isi=360)
+            isi=8
+        Send {Down 2}
+        Loop, % isi
+        {
+            Send {Down} 
+        }
+        Send {Enter}
+        Send {Tab}
+    }
+    else
+        Send {Tab}
+
+    isi:= wbc.Range("W"arahElevasiCL1).Value
+    if(isi != ""){
+        if (isi="stnr")
+            isi=0
+        else if (isi="north east")
+            isi=1
+        else if (isi="east")
+            isi=2
+        else if (isi="south east")
+            isi=3
+        else if (isi="south")
+            isi=4
+        else if (isi="south west")
+            isi=5
+        else if (isi="west")
+            isi=6
+        else if (isi="north west")
+            isi=7
+        else if (isi="north")
+            isi=8
+        else if (isi="-")
+            isi=9
+        else if (isi="No cloud")
+            isi=0
+        else if (isi=5)
+            isi=8
+        else if (isi=10)
+            isi=8
+        else if (isi=15)
+            isi=8
+        else if (isi=20)
+            isi=8
+        else if (isi=25)
+            isi=1
+        else if (isi=30)
+            isi=1
+        else if (isi=35)
+            isi=1
+        else if (isi=40)
+            isi=1
+        else if (isi=45)
+            isi=1
+        else if (isi=50)
+            isi=1
+        else if (isi=55)
+            isi=1
+        else if (isi=60)
+            isi=1
+        else if (isi=65)
+            isi=1
+        else if (isi=70)
+            isi=2
+        else if (isi=75)
+            isi=2
+        else if (isi=80)
+            isi=2
+        else if (isi=85)
+            isi=2
+        else if (isi=90)
+            isi=2
+        else if (isi=95)
+            isi=2
+        else if (isi=100)
+            isi=2
+        else if (isi=105)
+            isi=2
+        else if (isi=110)
+            isi=2
+        else if (isi=115)
+            isi=3
+        else if (isi=120)
+            isi=3
+        else if (isi=125)
+            isi=3
+        else if (isi=130)
+            isi=3
+        else if (isi=135)
+            isi=3
+        else if (isi=140)
+            isi=3
+        else if (isi=145)
+            isi=3
+        else if (isi=150)
+            isi=3
+        else if (isi=155)
+            isi=3
+        else if (isi=160)
+            isi=4
+        else if (isi=165)
+            isi=4
+        else if (isi=170)
+            isi=4
+        else if (isi=175)
+            isi=4
+        else if (isi=180)
+            isi=4
+        else if (isi=185)
+            isi=4
+        else if (isi=190)
+            isi=4
+        else if (isi=195)
+            isi=4
+        else if (isi=200)
+            isi=4
+        else if (isi=205)
+            isi=5
+        else if (isi=210)
+            isi=5
+        else if (isi=215)
+            isi=5
+        else if (isi=220)
+            isi=5
+        else if (isi=225)
+            isi=5
+        else if (isi=230)
+            isi=5
+        else if (isi=235)
+            isi=5
+        else if (isi=240)
+            isi=5
+        else if (isi=245)
+            isi=5
+        else if (isi=250)
+            isi=6
+        else if (isi=255)
+            isi=6
+        else if (isi=260)
+            isi=6
+        else if (isi=265)
+            isi=6
+        else if (isi=270)
+            isi=6
+        else if (isi=275)
+            isi=6
+        else if (isi=280)
+            isi=6
+        else if (isi=285)
+            isi=6
+        else if (isi=290)
+            isi=6
+        else if (isi=295)
+            isi=7
+        else if (isi=300)
+            isi=7
+        else if (isi=305)
+            isi=7
+        else if (isi=310)
+            isi=7
+        else if (isi=315)
+            isi=7
+        else if (isi=320)
+            isi=7
+        else if (isi=325)
+            isi=7
+        else if (isi=330)
+            isi=7
+        else if (isi=335)
+            isi=7
+        else if (isi=340)
+            isi=8
+        else if (isi=345)
+            isi=8
+        else if (isi=350)
+            isi=8
+        else if (isi=355)
+            isi=8
+        else if (isi=360)
+            isi=8
+        Send {Down 2}
+        Loop, % isi
+        {
+            Send {Down} 
+        }
+        Send {Enter}
+        Send {Tab}
+    }
+    else
+        Send {Tab}
+
+    nAwan:=12+space
+    isi:= wbc.Range("W"nAwan).Value
+    if(isi>=0){
+        Send {Down}
+        Loop, % isi
+        {
+            Send {Down} 
+        }
+        Send {Enter}
+        Send {Tab}
+    }
+    else if (isi="")
+        Send {Tab}
+    else{
+        Loop, 11
+        {
+            Send {Down} 
+        }
+        Send {Enter}
+        Send {Tab}
+    }
+
+    sudutCL:=11+space
+    pilihSudut:= wbc.Range("W"sudutCL).Value
+    split:="/"
+    IfInString, pilihSudut, %split%
+    {
+        for index, pilihSudut in StrSplit(pilihSudut, "/"){
+            if(pilihSudut>45){
+                pilihSudut=1
+            }
+            else if(pilihSudut=30){
+                pilihSudut=2
+            }
+            else if(pilihSudut=20){
+                pilihSudut=3
+            }
+            else if(pilihSudut=15){
+                pilihSudut=4
+            }
+            else if(pilih=12){
+                pilihSudut=5
+            }
+            else if(pilihSudut=9){
+                pilihSudut=6
+            }
+            else if(pilihSudut=7){
+                pilihSudut=7
+            }
+            else if(pilihSudut=6){
+                pilihSudut=8
+            }
+            else if(pilihSudut<6){
+                pilihSudut=9
+            }
+            if(pilihSudut>=0){
+                Send {Down 2}
+                Loop, % pilihSudut
+                {
+                    Send {Down} 
+                }
+                Send {Enter}
+                Send {Tab}
+            }
+        }
+    }
+    else{
+        Send {Down 2}
+        Send {Enter}
+        Send {Tab}
+        Send {Down 2}
+        Send {Enter}
         Send {Tab}
     }
 }
-
-else {
-    SendInput, % isiPuncakCL1
-    Send {Tab 2}
-}
-
-
-arahElevasiCL1:=10+space
-isi:= wbc.Range("W"arahElevasiCL1).Value
-if(isi != ""){
-    if (isi="stnr")
-        isi=0
-    else if (isi="north east")
-        isi=1
-    else if (isi="east")
-        isi=2
-    else if (isi="south east")
-        isi=3
-    else if (isi="south")
-        isi=4
-    else if (isi="south west")
-        isi=5
-    else if (isi="west")
-        isi=6
-    else if (isi="north west")
-        isi=7
-    else if (isi="north")
-        isi=8
-    else if (isi="-")
-        isi=9
-    else if (isi="No cloud")
-        isi=0
-    else if (isi=5)
-        isi=8
-    else if (isi=10)
-        isi=8
-    else if (isi=15)
-        isi=8
-    else if (isi=20)
-        isi=8
-    else if (isi=25)
-        isi=1
-    else if (isi=30)
-        isi=1
-    else if (isi=35)
-        isi=1
-    else if (isi=40)
-        isi=1
-    else if (isi=45)
-        isi=1
-    else if (isi=50)
-        isi=1
-    else if (isi=55)
-        isi=1
-    else if (isi=60)
-        isi=1
-    else if (isi=65)
-        isi=1
-    else if (isi=70)
-        isi=2
-    else if (isi=75)
-        isi=2
-    else if (isi=80)
-        isi=2
-    else if (isi=85)
-        isi=2
-    else if (isi=90)
-        isi=2
-    else if (isi=95)
-        isi=2
-    else if (isi=100)
-        isi=2
-    else if (isi=105)
-        isi=2
-    else if (isi=110)
-        isi=2
-    else if (isi=115)
-        isi=3
-    else if (isi=120)
-        isi=3
-    else if (isi=125)
-        isi=3
-    else if (isi=130)
-        isi=3
-    else if (isi=135)
-        isi=3
-    else if (isi=140)
-        isi=3
-    else if (isi=145)
-        isi=3
-    else if (isi=150)
-        isi=3
-    else if (isi=155)
-        isi=3
-    else if (isi=160)
-        isi=4
-    else if (isi=165)
-        isi=4
-    else if (isi=170)
-        isi=4
-    else if (isi=175)
-        isi=4
-    else if (isi=180)
-        isi=4
-    else if (isi=185)
-        isi=4
-    else if (isi=190)
-        isi=4
-    else if (isi=195)
-        isi=4
-    else if (isi=200)
-        isi=4
-    else if (isi=205)
-        isi=5
-    else if (isi=210)
-        isi=5
-    else if (isi=215)
-        isi=5
-    else if (isi=220)
-        isi=5
-    else if (isi=225)
-        isi=5
-    else if (isi=230)
-        isi=5
-    else if (isi=235)
-        isi=5
-    else if (isi=240)
-        isi=5
-    else if (isi=245)
-        isi=5
-    else if (isi=250)
-        isi=6
-    else if (isi=255)
-        isi=6
-    else if (isi=260)
-        isi=6
-    else if (isi=265)
-        isi=6
-    else if (isi=270)
-        isi=6
-    else if (isi=275)
-        isi=6
-    else if (isi=280)
-        isi=6
-    else if (isi=285)
-        isi=6
-    else if (isi=290)
-        isi=6
-    else if (isi=295)
-        isi=7
-    else if (isi=300)
-        isi=7
-    else if (isi=305)
-        isi=7
-    else if (isi=310)
-        isi=7
-    else if (isi=315)
-        isi=7
-    else if (isi=320)
-        isi=7
-    else if (isi=325)
-        isi=7
-    else if (isi=330)
-        isi=7
-    else if (isi=335)
-        isi=7
-    else if (isi=340)
-        isi=8
-    else if (isi=345)
-        isi=8
-    else if (isi=350)
-        isi=8
-    else if (isi=355)
-        isi=8
-    else if (isi=360)
-        isi=8
-    Send {Down 2}
-    Loop, % isi
-    {
-        Send {Down} 
-    }
-    Send {Enter}
-    Send {Tab}
-}
-else
-    Send {Tab}
-
-arahElevasiCL2:=11+space
-isi:= wbc.Range("W"arahElevasiCL2).Value
-if(isi != ""){
-    if (isi="stnr")
-        isi=0
-    else if (isi="north east")
-        isi=1
-    else if (isi="east")
-        isi=2
-    else if (isi="south east")
-        isi=3
-    else if (isi="south")
-        isi=4
-    else if (isi="south west")
-        isi=5
-    else if (isi="west")
-        isi=6
-    else if (isi="north west")
-        isi=7
-    else if (isi="north")
-        isi=8
-    else if (isi="-")
-        isi=9
-    else if (isi="No cloud")
-        isi=0
-    else if (isi=5)
-        isi=8
-    else if (isi=10)
-        isi=8
-    else if (isi=15)
-        isi=8
-    else if (isi=20)
-        isi=8
-    else if (isi=25)
-        isi=1
-    else if (isi=30)
-        isi=1
-    else if (isi=35)
-        isi=1
-    else if (isi=40)
-        isi=1
-    else if (isi=45)
-        isi=1
-    else if (isi=50)
-        isi=1
-    else if (isi=55)
-        isi=1
-    else if (isi=60)
-        isi=1
-    else if (isi=65)
-        isi=1
-    else if (isi=70)
-        isi=2
-    else if (isi=75)
-        isi=2
-    else if (isi=80)
-        isi=2
-    else if (isi=85)
-        isi=2
-    else if (isi=90)
-        isi=2
-    else if (isi=95)
-        isi=2
-    else if (isi=100)
-        isi=2
-    else if (isi=105)
-        isi=2
-    else if (isi=110)
-        isi=2
-    else if (isi=115)
-        isi=3
-    else if (isi=120)
-        isi=3
-    else if (isi=125)
-        isi=3
-    else if (isi=130)
-        isi=3
-    else if (isi=135)
-        isi=3
-    else if (isi=140)
-        isi=3
-    else if (isi=145)
-        isi=3
-    else if (isi=150)
-        isi=3
-    else if (isi=155)
-        isi=3
-    else if (isi=160)
-        isi=4
-    else if (isi=165)
-        isi=4
-    else if (isi=170)
-        isi=4
-    else if (isi=175)
-        isi=4
-    else if (isi=180)
-        isi=4
-    else if (isi=185)
-        isi=4
-    else if (isi=190)
-        isi=4
-    else if (isi=195)
-        isi=4
-    else if (isi=200)
-        isi=4
-    else if (isi=205)
-        isi=5
-    else if (isi=210)
-        isi=5
-    else if (isi=215)
-        isi=5
-    else if (isi=220)
-        isi=5
-    else if (isi=225)
-        isi=5
-    else if (isi=230)
-        isi=5
-    else if (isi=235)
-        isi=5
-    else if (isi=240)
-        isi=5
-    else if (isi=245)
-        isi=5
-    else if (isi=250)
-        isi=6
-    else if (isi=255)
-        isi=6
-    else if (isi=260)
-        isi=6
-    else if (isi=265)
-        isi=6
-    else if (isi=270)
-        isi=6
-    else if (isi=275)
-        isi=6
-    else if (isi=280)
-        isi=6
-    else if (isi=285)
-        isi=6
-    else if (isi=290)
-        isi=6
-    else if (isi=295)
-        isi=7
-    else if (isi=300)
-        isi=7
-    else if (isi=305)
-        isi=7
-    else if (isi=310)
-        isi=7
-    else if (isi=315)
-        isi=7
-    else if (isi=320)
-        isi=7
-    else if (isi=325)
-        isi=7
-    else if (isi=330)
-        isi=7
-    else if (isi=335)
-        isi=7
-    else if (isi=340)
-        isi=8
-    else if (isi=345)
-        isi=8
-    else if (isi=350)
-        isi=8
-    else if (isi=355)
-        isi=8
-    else if (isi=360)
-        isi=8
-    Send {Down 2}
-    Loop, % isi
-    {
-        Send {Down} 
-    }
-    Send {Enter}
-    Send {Tab}
-}
-else
-    Send {Tab}
-
-nAwan:=12+space
-isi:= wbc.Range("W"nAwan).Value
-if(isi>=0){
-    Send {Down}
-    Loop, % isi
-    {
-        Send {Down} 
-    }
-    Send {Enter}
-    Send {Tab 3}
-}
-else if (isi="")
-    Send {Tab 3}
-else{
-    Loop, 11
-    {
-        Send {Down} 
-    }
-    Send {Enter}
-    Send {Tab 3}
-}
+;batas awan rendah
 
 nAwanMenengah:=10+space
 isiNAwanMenengah:= wbc.Range("Z"nAwanMenengah).Value
