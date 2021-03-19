@@ -3,33 +3,32 @@ InputBox, nama, Tanggal, Masukkan Tanggal dgn format dd/mm/yy,,200,150
 StringSplit, tanggal_array, nama, '/'
 format=xls
 if(tanggal_array2=1)
-    tanggal_array2="1.Januari"
+    tanggal_array2=1.Januari
 else if(tanggal_array2=2)
-    tanggal_array2="2.Pebruari"
+    tanggal_array2=2.Pebruari
 else if(tanggal_array2=3)
-    tanggal_array2="3.Maret"
+    tanggal_array2=3.Maret
 else if(tanggal_array2=4)
-    tanggal_array2="4.April"
+    tanggal_array2=4.April
 else if(tanggal_array2=5)
-    tanggal_array2="5.Mei"
+    tanggal_array2=5.Mei
 else if(tanggal_array2=6)
-    tanggal_array2="6.Juni"
+    tanggal_array2=6.Juni
 else if(tanggal_array2=7)
-    tanggal_array2="7.Juli"
+    tanggal_array2=7.Juli
 else if(tanggal_array2=8)
-    tanggal_array2="8.Agustus"
+    tanggal_array2=8.Agustus
 else if(tanggal_array2=9)
-    tanggal_array2="9.September"
+    tanggal_array2=9.September
 else if(tanggal_array2=10)
-    tanggal_array2="10.Oktober"
+    tanggal_array2=10.Oktober
 else if(tanggal_array2=11)
-    tanggal_array2="11.Nopember"
+    tanggal_array2=11.Nopember
 else
-    tanggal_array2="12.Desember"
+    tanggal_array2=12.Desember
 
-namafile=%tanggal_array3%\%tanggal_array2%\%tanggal_array3%.%format%
-
-wbk := ComObjGet("D:\SYNOP_20\"namafile)
+namafile=D:\SYNOP_20%tanggal_array3%\%tanggal_array2%\%tanggal_array1%.%format%
+wbk := ComObjGet(namafile)
 wbc := wbk.Sheets("Input")
 Send {Tab}
 
