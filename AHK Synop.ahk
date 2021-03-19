@@ -24,7 +24,7 @@ else if(tanggal_array2=10)
     tanggal_array2=10.Oktober
 else if(tanggal_array2=11)
     tanggal_array2=11.Nopember
-else
+else if(tanggal_array2=12)
     tanggal_array2=12.Desember
 
 namafile=D:\SYNOP_20%tanggal_array3%\%tanggal_array2%\%tanggal_array1%.%format%
@@ -455,8 +455,9 @@ if(jenisAwanRendah != ""){
     else if (jenisAwanRendah="cb")
         jenisAwanRendah=9
     else{
-        MsgBox, Jenis awan belum terdaftar di program.
-        jenisAwanRendah=0
+        MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.
+        ExitApp
+        return
     }    
     Send {Down}
     Loop, % jenisAwanRendah
@@ -505,7 +506,6 @@ if(jenisAwanRendah>0){
         SendInput, % isiPuncakCL1
         Send {Tab 2}
     }
-
 
     arahElevasiCL1:=10+space
     isi:= wbc.Range("W"arahElevasiCL1).Value
@@ -877,24 +877,18 @@ if(jenisAwanRendah>0){
         Send {Enter}
         Send {Tab}
     }
-    else if (isi="")
-        Send {Tab}
     else{
-        Loop, 11
-        {
-            Send {Down} 
-        }
-        Send {Enter}
         Send {Tab}
     }
 
     sudutCL:=11+space
     pilihSudut:= wbc.Range("W"sudutCL).Value
+if(pilihSudut !=""){
     split:="/"
     IfInString, pilihSudut, %split%
     {
         for index, pilihSudut in StrSplit(pilihSudut, "/"){
-            if(pilihSudut>45){
+            if(pilihSudut>=45){
                 pilihSudut=1
             }
             else if(pilihSudut=30){
@@ -918,9 +912,14 @@ if(jenisAwanRendah>0){
             else if(pilihSudut=6){
                 pilihSudut=8
             }
-            else if(pilihSudut<6){
+            else if(pilihSudut<6 and pilihSudut>0){
                 pilihSudut=9
             }
+            else{
+                MsgBox, Sudut belum terdaftar di program `nkontak 089677030198.     
+                ExitApp
+                return
+            }  
             if(pilihSudut>=0){
                 Send {Down 2}
                 Loop, % pilihSudut
@@ -933,13 +932,46 @@ if(jenisAwanRendah>0){
         }
     }
     else{
+        if(pilihSudut>=45){
+                pilihSudut=1
+            }
+        else if(pilihSudut=30){
+            pilihSudut=2
+        }
+        else if(pilihSudut=20){
+            pilihSudut=3
+        }
+        else if(pilihSudut=15){
+            pilihSudut=4
+        }
+        else if(pilih=12){
+            pilihSudut=5
+        }
+        else if(pilihSudut=9){
+            pilihSudut=6
+        }
+        else if(pilihSudut=7){
+            pilihSudut=7
+        }
+        else if(pilihSudut=6){
+            pilihSudut=8
+        }
+        else if(pilihSudut<6){
+            pilihSudut=9
+        }
         Send {Down 2}
+        Loop, % pilihSudut
+        {
+            Send {Down} 
+        }
         Send {Enter}
-        Send {Tab}
-        Send {Down 2}
-        Send {Enter}
-        Send {Tab}
+        Send {Tab 2}
     }
+    }
+    else{
+     Send {Tab 2}   
+    }
+   
 }
 ;batas awan rendah
 
@@ -954,8 +986,18 @@ if(isiNAwanMenengah>=0){
     Send {Enter}
     Send {Tab}
 }
-else
+else if (isiNAwanMenengah=""){
+    Loop, 11
+    {
+        Send {Down} 
+    }
+    Send {Enter}
     Send {Tab}
+    isiNAwanMenengah=11
+}
+else{
+    Send {Tab}   
+}
 
 nAwanTinggi:=12+space
 isiNAwanTinggi:= wbc.Range("Z"nAwanTinggi).Value
@@ -968,8 +1010,18 @@ if(isiNAwanTinggi>=0){
     Send {Enter}
     Send {Tab}
 }
-else
+else if (isiNAwanTinggi=""){
+    Loop, 11
+    {
+        Send {Down} 
+    }
+    Send {Enter}
     Send {Tab}
+    isiNAwanTinggi=11
+}
+else{
+    Send {Tab}   
+}
 
 if(isiNAwanMenengah > 0){
     awanMenengah:=10+space
@@ -986,6 +1038,8 @@ if(isiNAwanMenengah > 0){
         else if (isi="cb cu st")
             isi=9
         else if (isi="acas")
+            isi=7
+        else if (isi="ac as")
             isi=7
         else if (isi="cb")
             isi=9
@@ -1014,8 +1068,9 @@ if(isiNAwanMenengah > 0){
         else if (isi="cb")
             isi=9
         else{
-            MsgBox, Jenis awan belum terdaftar di program.
-            isi=0
+            MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.     
+            ExitApp
+            return
         }     
         Send {Down}
         Loop, % isi
@@ -1045,6 +1100,8 @@ if(isiNAwanTinggi>0){
             isi=9
         else if (isi="acas")
             isi=7
+        else if (isi="ac as")
+            isi=7
         else if (isi="cb")
             isi=9
         else if (isi="cu")
@@ -1072,8 +1129,9 @@ if(isiNAwanTinggi>0){
         else if (isi="cb")
             isi=9
         else{
-            MsgBox, Jenis awan belum terdaftar di program.
-            isi=0
+            MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.     
+            ExitApp
+            return
         }     
         Send {Down}
         Loop, % isi
@@ -1472,9 +1530,7 @@ if(isi>=0){
     Send {Enter}
     Send {Tab}
 }
-else if (isi="")
-    Send {Tab}
-else{
+else if (isi=""){
     Loop, 11
     {
         Send {Down} 
@@ -1482,6 +1538,8 @@ else{
     Send {Enter}
     Send {Tab}
 }
+else
+    Send {Tab}
 
 jenisC1:=10+space
 isi:= wbc.Range("AI"jenisC1).Value
@@ -1497,6 +1555,8 @@ if(isi != "-" and isi != ""){
     else if (isi="cb cu st")
         isi=9
     else if (isi="acas")
+        isi=7
+else if (isi="ac as")
         isi=7
     else if (isi="cb")
         isi=9
@@ -1523,8 +1583,9 @@ if(isi != "-" and isi != ""){
     else if (isi="cb")
         isi=9 
     else{
-            MsgBox, Jenis awan belum terdaftar di program.
-            isi=0
+            MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.     
+            ExitApp
+            return
         } 
     Send {Down 2}
     Loop, % isi
@@ -1557,6 +1618,8 @@ if(isi != "-" and isi != ""){
         isi=9
     else if (isi="acas")
         isi=7
+else if (isi="ac as")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
@@ -1582,8 +1645,9 @@ if(isi != "-" and isi != ""){
     else if (isi="cb")
         isi=9 
     else{
-            MsgBox, Jenis awan belum terdaftar di program.
-            isi=0
+            MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.     
+            ExitApp
+            return
         } 
     Send {Down 2}
     Loop, % isi
@@ -1616,6 +1680,8 @@ if(isi != "-" and isi != ""){
         isi=9
     else if (isi="acas")
         isi=7
+else if (isi="ac as")
+        isi=7
     else if (isi="cb")
         isi=9
     else if (isi="0")
@@ -1641,8 +1707,9 @@ if(isi != "-" and isi != ""){
     else if (isi="cb")
         isi=9 
     else{
-            MsgBox, Jenis awan belum terdaftar di program.
-            isi=0
+            MsgBox, Jenis awan belum terdaftar di program `nkontak 089677030198.     
+            ExitApp
+            return
         } 
     Send {Down 2}
     Loop, % isi
@@ -1688,7 +1755,8 @@ if(isi>=0){
 }
 else if (isi="")
     Send {Tab}
-else{
+else 
+{
     Loop, 11
     {
         Send {Down} 
@@ -1718,6 +1786,7 @@ else{
     Send {Enter}
     Send {Tab}
 }
+
 
 banyakLapisan3:=12+space
 isi:= wbc.Range("AO"banyakLapisan3).Value
