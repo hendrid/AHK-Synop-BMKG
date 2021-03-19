@@ -49,6 +49,8 @@ else if(jam>11 and jam<18)
 else if(jam>17 and jam<24)
     space:= 42 + (5*jam)
 
+SetFormat,float,0.1
+
 dataAngin:= 10+space
 isi:=wbc.Range("B"dataAngin).Value
 if(isi=3){
@@ -424,6 +426,8 @@ if(jenisAwanRendah != ""){
         jenisAwanRendah=9
     else if (jenisAwanRendah="cb cu")
         jenisAwanRendah=9
+    else if (jenisAwanRendah="cb cu st")
+        jenisAwanRendah=9
     else if (jenisAwanRendah="acas")
         jenisAwanRendah=7
     else if (jenisAwanRendah="cb")
@@ -450,7 +454,10 @@ if(jenisAwanRendah != ""){
         jenisAwanRendah=8
     else if (jenisAwanRendah="cb")
         jenisAwanRendah=9
-        
+    else{
+        MsgBox, Jenis awan belum terdaftar di program.
+        jenisAwanRendah=0
+    }    
     Send {Down}
     Loop, % jenisAwanRendah
     {
@@ -976,6 +983,8 @@ if(isiNAwanMenengah > 0){
             isi=9
         else if (isi="cb cu")
             isi=9
+        else if (isi="cb cu st")
+            isi=9
         else if (isi="acas")
             isi=7
         else if (isi="cb")
@@ -1004,7 +1013,10 @@ if(isiNAwanMenengah > 0){
             isi=8
         else if (isi="cb")
             isi=9
-            
+        else{
+            MsgBox, Jenis awan belum terdaftar di program.
+            isi=0
+        }     
         Send {Down}
         Loop, % isi
         {
@@ -1029,6 +1041,8 @@ if(isiNAwanTinggi>0){
             isi=9
         else if (isi="cb cu")
             isi=9
+        else if (isi="cb cu st")
+            isi=9
         else if (isi="acas")
             isi=7
         else if (isi="cb")
@@ -1057,7 +1071,10 @@ if(isiNAwanTinggi>0){
             isi=8
         else if (isi="cb")
             isi=9
-            
+        else{
+            MsgBox, Jenis awan belum terdaftar di program.
+            isi=0
+        }     
         Send {Down}
         Loop, % isi
         {
@@ -1477,6 +1494,8 @@ if(isi != "-" and isi != ""){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="cb cu st")
+        isi=9
     else if (isi="acas")
         isi=7
     else if (isi="cb")
@@ -1503,6 +1522,10 @@ if(isi != "-" and isi != ""){
         isi=8
     else if (isi="cb")
         isi=9 
+    else{
+            MsgBox, Jenis awan belum terdaftar di program.
+            isi=0
+        } 
     Send {Down 2}
     Loop, % isi
     {
@@ -1530,6 +1553,8 @@ if(isi != "-" and isi != ""){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="cb cu st")
+        isi=9
     else if (isi="acas")
         isi=7
     else if (isi="cb")
@@ -1556,6 +1581,10 @@ if(isi != "-" and isi != ""){
         isi=8
     else if (isi="cb")
         isi=9 
+    else{
+            MsgBox, Jenis awan belum terdaftar di program.
+            isi=0
+        } 
     Send {Down 2}
     Loop, % isi
     {
@@ -1583,6 +1612,8 @@ if(isi != "-" and isi != ""){
         isi=9
     else if (isi="cb cu")
         isi=9
+    else if (isi="cb cu st")
+        isi=9
     else if (isi="acas")
         isi=7
     else if (isi="cb")
@@ -1609,6 +1640,10 @@ if(isi != "-" and isi != ""){
         isi=8
     else if (isi="cb")
         isi=9 
+    else{
+            MsgBox, Jenis awan belum terdaftar di program.
+            isi=0
+        } 
     Send {Down 2}
     Loop, % isi
     {
