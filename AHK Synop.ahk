@@ -628,7 +628,7 @@ if(isi != ""){
         isi=8
     else if (isi=360)
         isi=8
-    Send {Down}
+    Send {Down 2}
     Loop, % isi
     {
         Send {Down} 
@@ -808,7 +808,7 @@ if(isi != ""){
         isi=8
     else if (isi=360)
         isi=8
-    Send {Down}
+    Send {Down 2}
     Loop, % isi
     {
         Send {Down} 
@@ -1145,7 +1145,7 @@ if(isiNAwanMenengah>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down}
+        Send {Down 2}
         Loop, % isi
         {
             Send {Down} 
@@ -1332,7 +1332,7 @@ if(isiNAwanTinggi>0){
             isi=8
         else if (isi=360)
             isi=8
-        Send {Down}
+        Send {Down 2}
         Loop, % isi
         {
             Send {Down} 
@@ -1373,7 +1373,7 @@ else{
 
 jenisC1:=10+space
 isi:= wbc.Range("AI"jenisC1).Value
-if(isi != "-"){
+if(isi != "-" and isi != ""){
     if (isi="cu sc")
         isi=8
     else if (isi="cusc")
@@ -1426,7 +1426,7 @@ else
 
 jenisC2:=11+space
 isi:= wbc.Range("AI"jenisC2).Value
-if(isi != "-"){ 
+if(isi != "-" and isi != ""){ 
     if (isi="cu sc")
         isi=8
     else if (isi="cusc")
@@ -1479,7 +1479,7 @@ else
 
 jenisC3:=12+space
 isi:= wbc.Range("AI"jenisC3).Value
-if(isi != "-"){
+if(isi != "-" and isi != ""){
     if (isi="cu sc")
         isi=8
     else if (isi="cusc")
